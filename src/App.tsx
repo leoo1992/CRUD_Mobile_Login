@@ -9,8 +9,9 @@ export default function App() {
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
+        animated={true}
       />
-        <Routes />
+      <Routes />
     </>
   );
 }
