@@ -1,11 +1,14 @@
-import { View, Alert } from "react-native";
+import { useContext } from "react";
+import { View } from "react-native";
 import { Avatar, ListItem, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { styles, styleIcon } from "./styles";
-import { handleConfirmUserDelete } from '../../controllers/DeleteUserController';
+import { handleConfirmUserDelete } from "../../controllers/DeleteUserController";
+import UsersContext from "../../contexts/UsersContext";
 
 export function GetUserItem({ item: user }: any) {
   const navigation = useNavigation();
+  const { dispatch } = useContext(UsersContext);
 
   return (
     <ListItem bottomDivider onPress={() => navigation.navigate("Form", user)}>
@@ -23,7 +26,7 @@ export function GetUserItem({ item: user }: any) {
             buttonStyle={styleIcon.editStyle}
           />
           <Button
-            onPress={() => handleConfirmUserDelete(user)}
+            onPress={() => handleConfirmUserDelete(user, dispatch)}
             type="clear"
             icon={styleIcon.delete}
             buttonStyle={styleIcon.deleteStyle}
