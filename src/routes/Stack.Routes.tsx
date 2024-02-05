@@ -21,42 +21,43 @@ export function StackRoutes() {
           headerShadowVisible: false,
         }}
       >
-        <Screen
-          name="List"
-          component={UserList}
-          options={({ navigation }) => {
-            return {
-              title: "Usuários",
-              headerRight: () => (
-                <Icon.Button
-                  name="plus"
-                  onPress={() => navigation.navigate("Form")}
-                  color="#fff"
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                    textAlign: "center",
-                    justifyContent: "center",
-                    alignSelf: "center",
-                    alignItems: "center",
-                    alignContent: "center",
-                    display: "flex",
-                  }}
-                  backgroundColor="transparent"
-                ></Icon.Button>
-              ),
-            };
-          }}
-        />
-        <Screen
-          name="Form"
-          component={UserForm}
-          options={() => {
-            return {
-              title: "Cadastro de Usuário",
-            };
-          }}
-        />
+        
+          <Screen
+            name="List"
+            component={UserList}
+            options={({ navigation }) => {
+              return {
+                title: "Usuários",
+                headerRight: () => (
+                  <Icon.Button
+                    name="plus"
+                    onPress={() => navigation.navigate("Form")}
+                    color="#fff"
+                    style={{
+                      margin: 0,
+                      padding: 0,
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignSelf: "center",
+                      alignItems: "center",
+                      alignContent: "center",
+                      display: "flex",
+                    }}
+                    backgroundColor="transparent"
+                  ></Icon.Button>
+                ),
+              };
+            }}
+          />
+          <Screen
+            name="Form"
+            component={UserForm}
+            options={() => {
+              return {
+                title: "Cadastro de Usuário",
+              };
+            }}
+          />
       </Navigator>
     </UsersProvider>
   );
