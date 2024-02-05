@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import UsersContext from "../contexts/UsersContext";
 import { Button } from "react-native-elements";
 import { TextInput } from "react-native-paper";
-
 import { useNavigation } from "@react-navigation/native";
 import {
   Text,
@@ -13,50 +12,17 @@ import {
   ScrollView,
 } from "react-native";
 
+export const ValidateUserController = (route: { params: any }) => {
+  const [user, setUser] = useState(route.params ? route.params : {});
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [avatarUrlError, setAvatarUrlError] = useState("");
   const [disabled, setDisabled] = useState(false);
   const { dispatch } = useContext(UsersContext);
   const navigation = useNavigation();
+  const { name, email, avatarUrl } = user;
 
-export const ValidateUserController = (route: { params: any }) => {
-  const [user, setUser] = useState(route.params ? route.params : {});
-
-
-  const validateEmail = (email: string) => {
-    if (!email || email === "") {
-      setEmailError("* Email é obrigatório");
-      setDisabled(true);
-      return false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError("* Email inválido");
-      setDisabled(true);
-      return false;
-    } else {
-      setEmailError("");
-      setDisabled(false);
-      return true;
-    }
-  };
-
-  const validateName = (name: string) => {
-    if (!name || name === "") {
-      setNameError("* Nome é obrigatório");
-      setDisabled(true);
-      return false;
-    } else if (name.length < 3) {
-      setNameError("* Deve conter pelo menos 3 letras");
-      setDisabled(true);
-      return true;
-    } else {
-      setNameError("");
-      setDisabled(false);
-      return true;
-    }
-  };
-
-  const validateAvatarUrl = (avatarUrl: string) => {
+  const validateAvatarUrl = () => {
     if (!avatarUrl || avatarUrl === "") {
       setAvatarUrlError("* URL do Avatar é obrigatória");
       setDisabled(true);
@@ -76,13 +42,46 @@ export const ValidateUserController = (route: { params: any }) => {
     }
   };
 
-  const handleSave = (user: any) => {
-    const { name, email, avatarUrl } = user;
+  const validateName = () => {
+    if (!name || name === "") {
+      setNameError("* Nome é obrigatório");
+      setDisabled(true);
+      return false;
+    } else if (name.length < 2) {
+      setNameError("* Deve conter pelo menos 3 letras");
+      setDisabled(true);
+      return true;
+    } else {
+      setNameError("");
+      setDisabled(false);
+      return true;
+    }
+  };
+
+
+  const validateEmail = () => {
+    if (!email || email === "") {
+      setEmailError("* Email é obrigatório");
+      setDisabled(true);
+      return false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("* Email inválido");
+      setDisabled(true);
+      return false;
+    } else {
+      setEmailError("");
+      setDisabled(false);
+      return true;
+    }
+  };
+
+  const handleSave = () => {
+
 
     if (
-      validateAvatarUrl(avatarUrl) &&
-      validateName(name) &&
-      validateEmail(email)
+      validateAvatarUrl() &&
+      validateName() &&
+      validateEmail()
     ) {
       setDisabled(false);
       dispatch({
@@ -92,6 +91,9 @@ export const ValidateUserController = (route: { params: any }) => {
       navigation.navigate("List", user);
     } else {
       setDisabled(true);
+      validateAvatarUrl();
+      validateName();
+      validateEmail();
     }
   };
 

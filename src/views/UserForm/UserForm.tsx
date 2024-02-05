@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { ValidateUserController } from "../../controllers/ValidateUserController";
 import { styles, saveIcon, saveIconError } from "./styles";
 
@@ -24,9 +24,9 @@ export function UserForm({ route }: any) {
     TextInput,
   } = ValidateUserController(route);
 
-  const avatarUrlRef = useRef(null);
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
+  // const avatarUrlRef = useRef(null);
+  // const nameRef = useRef(null);
+  // const emailRef = useRef(null);
 
 
   return (
@@ -45,7 +45,7 @@ export function UserForm({ route }: any) {
             Url Avatar :
           </Text>
           <TextInput
-            ref={avatarUrlRef}
+            // ref={avatarUrlRef}
             editable
             allowFontScaling
             autoCorrect={false}
@@ -53,7 +53,7 @@ export function UserForm({ route }: any) {
             style={[styles.input, avatarUrlError ? styles.inputError : null]}
             onChangeText={(avatarUrl) => {
               setUser({ ...user, avatarUrl });
-              validateAvatarUrl(avatarUrl);
+              validateAvatarUrl();
             }}
             placeholder="Insira uma Url"
             placeholderTextColor={avatarUrlError ? "red" : "purple"}
@@ -80,7 +80,7 @@ export function UserForm({ route }: any) {
             Nome :
           </Text>
           <TextInput
-            ref={nameRef}
+            // ref={nameRef}
             editable
             allowFontScaling
             autoCorrect={false}
@@ -88,7 +88,7 @@ export function UserForm({ route }: any) {
             style={[styles.input, nameError ? styles.inputError : null]}
             onChangeText={(name) => {
               setUser({ ...user, name });
-              validateName(name);
+              validateName();
             }}
             placeholder="Informe o nome do usuário"
             placeholderTextColor={nameError ? "red" : "purple"}
@@ -112,7 +112,7 @@ export function UserForm({ route }: any) {
             Email :
           </Text>
           <TextInput
-            ref={emailRef}
+            // ref={emailRef}
             editable
             allowFontScaling
             autoCorrect={false}
@@ -120,7 +120,7 @@ export function UserForm({ route }: any) {
             style={[styles.input, emailError ? styles.inputError : null]}
             onChangeText={(email) => {
               setUser({ ...user, email });
-              validateEmail(email);
+              validateEmail();
             }}
             placeholder="Informe seu email"
             placeholderTextColor={emailError ? "red" : "purple"}
@@ -152,7 +152,9 @@ export function UserForm({ route }: any) {
                   ? styles.buttonTextError
                   : styles.buttonText
               }
-              onPress={() => handleSave(user)}
+              onPress={() => {
+                handleSave();}
+              }
               type="solid"
               icon={
                 avatarUrlError || nameError || emailError
