@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { ValidateUserController } from "../../controllers/ValidateUserController";
-import { styles, saveIcon, saveIconError } from "./styles";
+import { styles, saveIcon } from "./styles";
 
-export function UserForm({ route }: any) {
+export function UserForm(this: any, { route }: any) {
   const {
     nameError,
     emailError,
     avatarUrlError,
-    disabled,
-    validateName,
-    validateEmail,
-    validateAvatarUrl,
     handleSave,
     user,
     setUser,
@@ -22,12 +18,14 @@ export function UserForm({ route }: any) {
     ScrollView,
     Button,
     TextInput,
+    validateAvatarUrl,
+    validateName,
+    validateEmail,
   } = ValidateUserController(route);
 
-  // const avatarUrlRef = useRef(null);
-  // const nameRef = useRef(null);
-  // const emailRef = useRef(null);
-
+  const avatarUrlRef = useRef<any>(null);
+  const nameRef = useRef<any>(null);
+  const emailRef = useRef<any>(null);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -45,16 +43,14 @@ export function UserForm({ route }: any) {
             Url Avatar :
           </Text>
           <TextInput
-            // ref={avatarUrlRef}
+            ref={avatarUrlRef}
             editable
             allowFontScaling
             autoCorrect={false}
             mode="outlined"
             style={[styles.input, avatarUrlError ? styles.inputError : null]}
-            onChangeText={(avatarUrl) => {
-              setUser({ ...user, avatarUrl });
-              validateAvatarUrl();
-            }}
+            onChangeText={(text) => setUser({ ...user, avatarUrl: text })}
+            onBlur={validateAvatarUrl}
             placeholder="Insira uma Url"
             placeholderTextColor={avatarUrlError ? "red" : "purple"}
             textColor={avatarUrlError ? "red" : "purple"}
@@ -80,16 +76,14 @@ export function UserForm({ route }: any) {
             Nome :
           </Text>
           <TextInput
-            // ref={nameRef}
+            ref={nameRef}
             editable
             allowFontScaling
             autoCorrect={false}
             mode="outlined"
             style={[styles.input, nameError ? styles.inputError : null]}
-            onChangeText={(name) => {
-              setUser({ ...user, name });
-              validateName();
-            }}
+            onChangeText={(text) => setUser({ ...user, name: text })}
+            onBlur={validateName}
             placeholder="Informe o nome do usuário"
             placeholderTextColor={nameError ? "red" : "purple"}
             maxLength={40}
@@ -112,16 +106,14 @@ export function UserForm({ route }: any) {
             Email :
           </Text>
           <TextInput
-            // ref={emailRef}
+            ref={emailRef}
             editable
             allowFontScaling
             autoCorrect={false}
             mode="outlined"
             style={[styles.input, emailError ? styles.inputError : null]}
-            onChangeText={(email) => {
-              setUser({ ...user, email });
-              validateEmail();
-            }}
+            onChangeText={(text) => setUser({ ...user, email: text })}
+            onBlur={validateEmail}
             placeholder="Informe seu email"
             placeholderTextColor={emailError ? "red" : "purple"}
             keyboardType="email-address"
@@ -145,29 +137,14 @@ export function UserForm({ route }: any) {
 
           <View style={styles.buttonGroup}>
             <Button
-              disabled={disabled}
               title="Salvar"
-              titleStyle={
-                avatarUrlError || nameError || emailError
-                  ? styles.buttonTextError
-                  : styles.buttonText
-              }
-              onPress={() => {
-                handleSave();}
-              }
+              titleStyle={styles.buttonText}
+              onPress={() => handleSave(user)}
               type="solid"
-              icon={
-                avatarUrlError || nameError || emailError
-                  ? saveIconError
-                  : saveIcon
-              }
+              icon={saveIcon}
               iconPosition="left"
               iconContainerStyle={styles.containerSaveIcon}
-              buttonStyle={
-                avatarUrlError || nameError || emailError
-                  ? styles.submitButtonError
-                  : styles.submitButton
-              }
+              buttonStyle={styles.submitButton}
             />
           </View>
         </KeyboardAvoidingView>

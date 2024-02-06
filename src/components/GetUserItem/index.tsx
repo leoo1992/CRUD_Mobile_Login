@@ -12,10 +12,14 @@ export function GetUserItem({ item: user }: any) {
 
   return (
     <ListItem bottomDivider onPress={() => navigation.navigate("Form", user)}>
-      <Avatar rounded key={user.id} source={{ uri: user.avatarUrl }} />
+      <View style={styles.avatar}>
+        <Avatar rounded key={user.id} source={{ uri: user.avatarUrl }} />
+      </View>
       <ListItem.Content>
-        <ListItem.Title>{user.name}</ListItem.Title>
-        <ListItem.Subtitle>{user.email} </ListItem.Subtitle>
+        <ListItem.Title style={styles.title}>{user.name}</ListItem.Title>
+        <ListItem.Subtitle style={styles.subTitle}>
+          {user.email}
+        </ListItem.Subtitle>
       </ListItem.Content>
       <ListItem.Content right>
         <View style={styles.contentRight}>

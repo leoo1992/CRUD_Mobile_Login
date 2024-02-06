@@ -1,10 +1,24 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  contentRight:{
-    flexDirection: "row"
-  }
+  contentRight: {
+    flexDirection: "row",
+  },
 
+  title: {
+    color: "purple",
+    fontWeight: "bold",
+  },
+
+  subTitle: {
+    color: "purple",
+  },
+
+  avatar: {
+    borderColor: "purple",
+    borderWidth: 2,
+    borderRadius: 60,
+  }
 });
 
 export const styleIcon = {
