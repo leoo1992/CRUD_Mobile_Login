@@ -1,5 +1,5 @@
 Este é um projeto realizado para praticar conceitos de mobile com o React Native.
-nele é realizado um CRUD em usuarios
+nele é realizado um CRUD em usuarios. Utiliza contextAPI e Reduce
 
 # Como Iniciar : 
 
