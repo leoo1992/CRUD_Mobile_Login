@@ -13,6 +13,9 @@
 *.kt linguist-vendored
 *.c linguist-vendored
 *.rb linguist-vendored
+*.erb linguist-vendored
+*.ru linguist-vendored
+*.rake linguist-vendored
 *.cpp linguist-vendored
 *.cc linguist-vendored
 *.cxx linguist-vendored
@@ -20,3 +23,8 @@
 *.mm linguist-vendored
 *.h linguist-vendored
 *.cs linguist-vendored
+*.yaml linguist-vendored
+*.gemfile linguist-vendored
+*.gemspec linguist-vendored
+*.lock linguist-vendored
+*.conf linguist-vendored
