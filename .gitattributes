@@ -13,3 +13,7 @@
 *.kt linguist-vendored
 *.c linguist-vendored
 *.rb linguist-vendored
+*.cpp linguist-vendored
+*.cc linguist-vendored
+*.cxx linguist-vendored
+*.m linguist-vendored
