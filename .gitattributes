@@ -50,3 +50,11 @@
 *.xcscheme linguist-vendored
 *.plist linguist-vendored
 *.storyboard linguist-vendored
+*Gemfile linguist-vendored
+*Podfile linguist-vendored
+Gemfile export-ignore
+Gemfile.lock export-ignore
+Podfile export-ignore
+Podfile.lock export-ignore
+
+
