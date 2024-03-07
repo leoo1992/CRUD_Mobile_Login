@@ -1,0 +1,15 @@
+*.css linguist-vendored
+*.html linguist-vendored
+*.md linguist-vendored
+*.json linguist-vendored
+*.txt linguist-vendored
+*.xml linguist-vendored
+*.yml linguist-vendored
+*.png linguist-vendored
+*.bat linguist-vendored
+*.gradle linguist-vendored
+*.pro linguist-vendored
+*.keystore linguist-vendored
+*.kt linguist-vendored
+*.c linguist-vendored
+*.rb linguist-vendored
