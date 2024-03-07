@@ -45,3 +45,8 @@
 *.pid linguist-vendored
 *.coffee linguist-vendored
 *.properties linguist-vendored
+*.watchmanconfig linguist-vendored
+*.pbxproj linguist-vendored
+*.xcscheme linguist-vendored
+*.plist linguist-vendored
+*.storyboard linguist-vendored
