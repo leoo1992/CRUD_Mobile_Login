@@ -1,6 +1,7 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "strict": true,
     "types": ["jest"],
   },
   "exclude": ["node_modules", "build", "dist"]
