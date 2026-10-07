@@ -42,5 +42,13 @@ jobs:
           node tests/repository-quality.node.mjs
           echo "quality-ok" > quality/dist/quality.ok
 
+      - name: JVM quality (ktlint)
+        continue-on-error: true
+        run: |
+          curl -fsSL -o /tmp/ktlint https://github.com/ktlint/ktlint/releases/download/1.8.0/ktlint_linux-x86-64
+          chmod +x /tmp/ktlint
+          find android/app/src/main/java -name '*.kt' -exec /tmp/ktlint {} +
+      - name: Native static analysis configuration
+        run: test -f .clang-tidy
       - name: Docker build
         run: docker build -f quality/Dockerfile -t repository-quality .
